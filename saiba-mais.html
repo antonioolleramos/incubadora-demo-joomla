@@ -1,0 +1,827 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Saiba Mais | Incubadora Demo — prévia de portfólio</title><meta name="description" content="Prévia estática baseada no código visual original do website Incubadora Demo. Não é o sistema institucional em produção."><link rel="stylesheet" href="referencia-original/user.css"><link rel="stylesheet" href="assets/portfolio.css"></head><body class="site"><div class="site-content">  <!--
+    ============================================================
+    Bloco 1: Modulo de Cabecalho (Menu)
+    Dependencias visuais usadas pelo menu e pelo rodape:
+    - Tailwind CDN para classes utilitarias existentes
+    - Font Awesome para icones
+    - Google Fonts para Inter e Space Grotesk
+    ============================================================
+  -->
+
+
+  <style>
+    .incubadora-demo-header,
+    .incubadora-demo-header * {
+      box-sizing: border-box;
+    }
+
+    .incubadora-demo-header {
+      background: linear-gradient(to bottom, #ffffff 0%, #cbd5e1 100%) !important;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4) !important;
+      height: 6rem !important;
+      display: flex !important;
+      align-items: center !important;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      z-index: 999 !important;
+      border-bottom: none !important;
+      font-family: Inter, Arial, Helvetica, sans-serif !important;
+    }
+
+    .incubadora-demo-header > .incubadora-demo-nav-inner {
+      max-width: 90rem !important;
+      width: 100% !important;
+      margin: 0 auto !important;
+      padding: 0 clamp(1rem, 2vw, 2rem) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      height: 100% !important;
+      gap: clamp(1rem, 2vw, 2rem);
+    }
+
+    .incubadora-demo-nav-inner {
+      max-width: none;
+      width: 100%;
+      margin: 0;
+      padding: 0 1rem 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      height: 100%;
+    }
+
+    .nav-logo-container {
+    position: relative !important;
+    background: linear-gradient(to bottom, #ffffff 0%, #cbd5e1 100%) !important;
+    height: clamp(7.4rem, 8.5vw, 9.8rem);
+    width: clamp(22rem, 31vw, 34rem);
+    display: flex;
+    align-items: center;
+    padding: 0 clamp(1.5rem, 2.8vw, 3rem) 0 clamp(2rem, 4vw, 5rem);
+    border-bottom-right-radius: 300px;
+    z-index: 60;
+    flex: 0 1 clamp(22rem, 31vw, 34rem);
+    overflow: visible !important;
+  }
+
+  .nav-logo-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100vw;
+    width: 100vw;
+    height: 100%;
+    background: linear-gradient(to bottom, #ffffff 0%, #cbd5e1 100%) !important;
+    z-index: -1;
+  }
+
+    .nav-logo-container img {
+      height: clamp(11rem, 9vw, 11rem) !important;
+      width: auto;
+      margin-top: 0.8rem !important;
+    }
+
+    .nav-link {
+      color: #000000 !important;
+      font-weight: 500 !important;
+      font-family: Inter, Arial, Helvetica, sans-serif !important;
+      line-height: normal !important;
+      text-decoration: none;
+    }
+
+    #fale-conosco {
+      background-color: #f97316 !important;
+      border-radius: 9999px !important;
+      color: white !important;
+      font-family: Inter, Arial, Helvetica, sans-serif !important;
+      line-height: 1.2 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      box-sizing: border-box !important;
+      text-decoration: none;
+    }
+
+    #desktop-menu {
+      display: flex;
+      align-items: center;
+      font-family: Inter, Arial, Helvetica, sans-serif !important;
+      line-height: normal !important;
+      white-space: nowrap !important;
+      min-width: 0;
+      flex: 0 1 auto;
+      gap: clamp(0.75rem, 1.15vw, 1.2rem) !important;
+      padding-right: 0.25rem;
+      transform: translateX(-0.75rem);
+    }
+
+    #desktop-menu .nav-link,
+    #desktop-menu #fale-conosco,
+    #desktop-menu img {
+      flex: 0 0 auto !important;
+    }
+
+    #mobile-menu-btn {
+      display: none;
+      width: 2.75rem;
+      height: 2.75rem;
+      padding: 0 !important;
+      margin: 0 !important;
+      border: 1px solid #cbd5e1;
+      border-radius: 0.75rem;
+      background: #fff;
+      color: #0f172a;
+      align-items: center;
+      justify-content: center;
+      line-height: 1 !important;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    #mobile-menu-btn i {
+      display: block;
+      width: 1.2rem;
+      height: 1.2rem;
+      line-height: 1.2rem !important;
+      font-size: 1.2rem;
+      text-align: center;
+      margin: 0 !important;
+    }
+    @media (min-width: 1501px) and (max-width: 1600px) {
+    .nav-logo-container img {
+      transform: translateX(-2rem) !important;
+      }
+    }
+    @media (max-width: 1500px) {
+      body {
+        padding-top: 6.5rem !important;
+      }
+
+      .incubadora-demo-header {
+        height: 6.5rem !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        margin: 0 !important;
+        z-index: 9999 !important;
+      }
+
+      .incubadora-demo-header > .incubadora-demo-nav-inner {
+        justify-content: space-between !important;
+        padding: 0 0.75rem 0 0 !important;
+        max-width: none !important;
+        gap: 0.75rem !important;
+      }
+
+      .incubadora-demo-nav-inner {
+        flex-wrap: nowrap !important;
+        width: 100% !important;
+        height: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+      }
+
+      .nav-logo-container {
+        display: flex !important;
+        align-items: center !important;
+        width: auto !important;
+        height: 6.5rem !important;
+        padding: 0 0.75rem 0 1rem !important;
+        border-bottom-right-radius: 0 !important;
+        position: relative !important;
+        background: transparent !important;
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        max-width: calc(100% - 4rem) !important;
+        overflow: visible !important;
+      }
+
+      .nav-logo-container::before {
+        display: none !important;
+      }
+
+      .nav-logo-container img {
+        display: block !important;
+        visibility: visible !important;
+        height: 5.8rem !important;
+        max-height: none !important;
+        max-width: min(15rem, calc(100vw - 5.5rem)) !important;
+        margin-top: 0.45rem !important;
+        object-fit: contain !important;
+      }
+
+      #mobile-menu-btn {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex: 0 0 2.75rem !important;
+        margin-left: auto !important;
+        position: relative;
+        z-index: 10001;
+      }
+
+      #desktop-menu {
+        position: fixed !important;
+        top: 6.5rem !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        background: #fff;
+        border-top: 1px solid #e2e8f0;
+        box-shadow: 0 14px 30px rgba(15, 23, 42, 0.14);
+        flex-direction: column;
+        align-items: stretch !important;
+        gap: 0.2rem !important;
+        padding: 0.85rem !important;
+        transform: none !important;
+        max-height: calc(100vh - 6.5rem);
+        overflow-y: auto;
+        z-index: 10000;
+      }
+
+      #desktop-menu:not(.open) {
+        display: none !important;
+      }
+
+      #desktop-menu.open {
+        display: flex !important;
+        background: #fff !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+      }
+
+      #desktop-menu .nav-link,
+      #desktop-menu #fale-conosco {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 0.75rem 1rem !important;
+        border-radius: 0.75rem;
+        font-size: 0.98rem;
+      }
+
+      #desktop-menu img {
+        margin: 0.35rem auto 0.15rem;
+        height: 2.4rem !important;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1500px) {
+      .nav-logo-container img {
+        height: 6.3rem !important;
+        max-width: min(17rem, calc(100vw - 5.5rem)) !important;
+        margin-top: 0.25rem !important;
+      }
+    }
+
+  </style>
+
+  <nav class="incubadora-demo-header" aria-label="Navegação principal Incubadora Demo">
+    <div class="incubadora-demo-nav-inner">
+      <div class="nav-logo-container">
+        <span class="portfolio-site-brand" aria-label="Incubadora Demo"><strong>INCUBADORA</strong><small>DEMONSTRAÇÃO</small></span>
+      </div>
+
+      <button id="mobile-menu-btn" type="button" aria-label="Abrir menu" aria-controls="desktop-menu" aria-expanded="false">
+        <span aria-hidden="true" style="display:inline-block;font-style:normal;font-weight:bold">☰</span>
+      </button>
+
+      <div id="desktop-menu">
+        <a class="nav-link" href="index.html" data-incubadora-demo-path="#">Home</a>
+        <a class="nav-link" href="index.html#sobre" data-incubadora-demo-path="#sobre">Incubadora</a>
+        <a class="nav-link" href="index.html#metodologia" data-incubadora-demo-path="#metodologia">Metodologia</a>
+        <a class="nav-link" href="index.html#eventos" data-incubadora-demo-path="#eventos">Eventos</a>
+        <a class="nav-link" href="empresas.html" data-incubadora-demo-path="#empresas">Empresas</a>
+        <a class="nav-link" href="editais.html" data-incubadora-demo-path="#editais">Editais</a>
+        <a class="nav-link" href="documentos.html" data-incubadora-demo-path="index.php/Documentos">Documentos</a>
+        <a class="nav-link" href="noticias.html" data-incubadora-demo-path="index.php/Noticias">Notícias</a>
+        <a href="index.html#contato" data-incubadora-demo-path="#contato" id="fale-conosco" style="padding: 0.6rem 1.5rem; font-weight: 600; text-transform: uppercase; font-size: 0.9rem;">Fale Conosco</a>
+        
+      </div>
+    </div>
+  </nav>
+
+  
+
+<div id="content"><style>
+    * { box-sizing: border-box; }
+
+    .incubadora-demo-page-content {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      background: #f8fafc;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color: #0f172a;
+    }
+
+    /* ===== Hero ===== */
+    .news-hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(to bottom, #181818 0%, #000000 100%);
+      padding: 11.5rem 1rem 6.5rem;
+      color: #fff;
+    }
+    .news-hero::before,
+    .news-hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(65px);
+      pointer-events: none;
+    }
+    .news-hero::before {
+      width: 220px;
+      height: 220px;
+      background: rgba(249, 115, 22, 0.35);
+      top: 1rem;
+      right: 8%;
+    }
+    .news-hero::after {
+      width: 240px;
+      height: 240px;
+      background: rgba(18, 161, 154, 0.3);
+      bottom: 0;
+      left: 8%;
+    }
+
+    .hero-content { max-width: 80rem; margin: 0 auto; position: relative; z-index: 2; }
+    .hero-kicker { color: #12a19a; font-size: 0.8rem; letter-spacing: .15em; text-transform: uppercase; font-weight: 700; }
+    .hero-title { font-family: "Space Grotesk", Inter, sans-serif; font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.1; margin: .5rem 0 1rem; }
+    .hero-subtitle { color: #cbd5e1; max-width: 46rem; font-size: 1.08rem; line-height: 1.7; }
+    /* Editais: etapas centralizadas e ações abaixo */
+    .editais-layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .editais-steps {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 1.5rem;
+      align-items: start;
+      width: min(100%, 68rem);
+      min-width: 0;
+      margin: 0 auto;
+    }
+    .editais-step { text-align: center; min-width: 0; }
+    .editais-step--offset { padding-left: 0; }
+    .editais-icon {
+      width: 5rem;
+      height: 5rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem auto;
+      position: relative;
+    }
+    .editais-connector {
+      position: absolute;
+      height: 2px;
+      background: #e2e8f0;
+      width: 4rem;
+      right: -4.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .editais-actions {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+      width: 100%;
+    }
+    .editais-button,
+    .anexo-card {
+      min-height: 3.2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-weight: 800;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+    .editais-button {
+      padding: 0.9rem 2.2rem;
+      background: #f97316;
+      color: #ffffff;
+      border-radius: 9999px;
+      box-shadow: 0 12px 24px rgba(249, 115, 22, 0.2);
+    }
+    .editais-button:hover,
+    .anexo-card:hover {
+      transform: translateY(-2px);
+    }
+    .anexo-card {
+      min-width: 16rem;
+      min-height: 5.25rem;
+      padding: 1.15rem 1.55rem;
+      border: 2px solid rgba(249, 115, 22, 0.42);
+      border-radius: 0.9rem;
+      background: linear-gradient(180deg, #ffffff 0%, #fff7ed 100%);
+      color: #0f172a;
+      box-shadow: 0 18px 36px rgba(249, 115, 22, 0.16), 0 10px 24px rgba(15, 23, 42, 0.08);
+      gap: 0.85rem;
+      font-size: 1.12rem;
+      letter-spacing: 0.03em;
+      position: relative;
+      overflow: hidden;
+    }
+    .anexo-card::after {
+      content: "PDF";
+      position: absolute;
+      top: 0.55rem;
+      right: 0.7rem;
+      color: #f97316;
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+    }
+    .anexo-card i {
+      width: 2.65rem;
+      height: 2.65rem;
+      border-radius: 9999px;
+      background: #f97316;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.18rem;
+      flex-shrink: 0;
+    }
+    .anexo-card span {
+      font-size: 1.2rem;
+      font-weight: 900;
+    }
+    .anexo-card:hover {
+      border-color: #f97316;
+      color: #f97316;
+      box-shadow: 0 22px 42px rgba(249, 115, 22, 0.24), 0 14px 28px rgba(15, 23, 42, 0.12);
+    }
+
+    /* ===== faça parte ===== */
+    .news-section { padding: 0; background: #ffffff; }
+    .news-wrap { width: 100%; margin: 0; }
+@media (max-width: 767px) {
+
+
+      /* ===== #editais mobile: mantém desktop intacto e corrige somente celular ===== */
+      #editais {
+        overflow-x: hidden !important;
+      }
+
+      #editais > div {
+        width: 100% !important;
+        padding: 0 1rem !important;
+      }
+
+      #editais > div > div {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+      }
+
+      /* Bloco de introdução */
+      #editais > div > div > div:first-child {
+        margin-bottom: 0 !important;
+      }
+
+      #editais > div > div > div:first-child h2 {
+        font-size: clamp(2rem, 9vw, 2.4rem) !important;
+        line-height: 1.08 !important;
+        margin: 0 0 1rem 0 !important;
+      }
+
+      #editais > div > div > div:first-child p {
+        max-width: 100% !important;
+        font-size: 1rem !important;
+        line-height: 1.65 !important;
+        margin: 0 0 1.25rem 0 !important;
+        word-break: normal !important;
+        overflow-wrap: normal !important;
+      }
+
+      #editais > div > div > div:first-child a {
+        display: inline-block !important;
+        font-size: 0.95rem !important;
+        padding: 0.85rem 1.5rem !important;
+      }
+
+      /* Lista de etapas em cards verticais */
+      #editais .editais-steps {
+        grid-template-columns: 1fr !important;
+        gap: 0.9rem !important;
+      }
+
+      #editais .editais-step {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        padding: 0.95rem !important;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.95rem;
+        background: #f8fafc;
+        text-align: left !important;
+        overflow: hidden;
+      }
+
+      #editais .editais-step * {
+        max-width: 100% !important;
+      }
+
+      /* remove conectores desktop e recuos manuais no mobile */
+      #editais .editais-connector { display: none !important; }
+
+      #editais .editais-actions {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0.75rem !important;
+        margin-top: 1.25rem !important;
+      }
+
+      #editais .editais-button,
+      #editais .anexo-card {
+        width: 100% !important;
+        min-height: 3rem !important;
+        box-sizing: border-box !important;
+      }
+      #editais .editais-step--offset { padding-left: 0.95rem !important; }
+
+      #editais .editais-icon {
+        width: 3rem !important;
+        height: 3rem !important;
+        margin: 0 0 0.6rem 0 !important;
+      }
+.hero-subtitle { font-size: 1rem; }
+      .news-hero { padding: 8.2rem 1rem 3.75rem; }
+      .news-section { padding-top: 4rem; }
+}
+  </style>
+
+<div class="incubadora-demo-page-content" id="topo-noticias">
+<header class="news-hero">
+      <div class="hero-content">
+        <p class="hero-kicker">Incubadora Demo · Portfólio</p>
+        <h1 class="hero-title">Faça Parte</h1>
+        <p class="hero-subtitle">Entenda como ingressas na nossa Incubadora</p>
+      </div>
+    </header>
+
+    <main class="news-section" aria-label="Área principal de Faça Parte">
+      <div class="news-wrap">
+<!-- ============================================================
+     SEÇÃO: EDITAIS
+     Mostra o fluxo de ingresso na incubadora em 5 etapas.
+     ============================================================ -->
+<section id="editais" class="scroll-bottom" style="background:#ffffff; padding:5rem 0; color:#0f172a; overflow:hidden;">
+  <div style="max-width:none; width:94%; margin:0 auto; padding:0; box-sizing:border-box;">
+    <div class="editais-layout">
+      <!-- Etapas centralizadas -->
+      <div class="editais-steps">
+
+        <!-- Etapa 01 -->
+        <div class="editais-step">
+          <div class="editais-icon">
+            <span aria-hidden="true" style="display:inline-block;font-style:normal;font-weight:bold">✧</span>
+            <div class="editais-connector"></div>
+          </div>
+          <div style="color:#f97316; font-weight:700; margin-bottom:0.75rem;">01</div>
+          <h4 style="font-size:0.95rem; font-weight:700; margin:0 0 0.75rem 0; color:#0f172a; line-height:1.3;">Publicação do edital</h4>
+          <p style="font-size:0.78rem; color:#64748b; line-height:1.45; margin:0;">Divulgação das regras, critérios de participação e abertura oficial das inscrições.</p>
+        </div>
+
+        <!-- Etapa 02 -->
+        <div class="editais-step editais-step--offset">
+          <div class="editais-icon">
+            <span aria-hidden="true" style="display:inline-block;font-style:normal;font-weight:bold">✧</span>
+            <div class="editais-connector"></div>
+          </div>
+          <div style="color:#f97316; font-weight:700; margin-bottom:0.75rem;">02</div>
+          <h4 style="font-size:0.95rem; font-weight:700; margin:0 0 0.75rem 0; color:#0f172a; line-height:1.3;">Inscrição da proposta</h4>
+          <p style="font-size:0.78rem; color:#64748b; line-height:1.45; margin:0;">Envio do projeto, documentação necessária e informações sobre a solução ou empreendimento.</p>
+        </div>
+
+        <!-- Etapa 03 -->
+        <div class="editais-step">
+          <div class="editais-icon">
+            <span aria-hidden="true" style="display:inline-block;font-style:normal;font-weight:bold">✧</span>
+            <div class="editais-connector"></div>
+          </div>
+          <div style="color:#f97316; font-weight:700; margin-bottom:0.75rem;">03</div>
+          <h4 style="font-size:0.95rem; font-weight:700; margin:0 0 0.75rem 0; color:#0f172a; line-height:1.3;">Avaliação das propostas</h4>
+          <p style="font-size:0.78rem; color:#64748b; line-height:1.45; margin:0;">Análise técnica e estratégica realizada por especialistas, considerando o potencial inovador e de mercado.</p>
+        </div>
+
+        <!-- Etapa 04 -->
+        <div class="editais-step">
+          <div class="editais-icon">
+            <span aria-hidden="true" style="display:inline-block;font-style:normal;font-weight:bold">✧</span>
+            <div class="editais-connector"></div>
+          </div>
+          <div style="color:#f97316; font-weight:700; margin-bottom:0.75rem;">04</div>
+          <h4 style="font-size:0.95rem; font-weight:700; margin:0 0 0.75rem 0; color:#0f172a; line-height:1.3;">Resultado da seleção</h4>
+          <p style="font-size:0.78rem; color:#64748b; line-height:1.45; margin:0;">Divulgação dos projetos aprovados para ingresso nos programas de Pré-Incubação ou Incubação.</p>
+        </div>
+
+        <!-- Etapa 05 -->
+        <div class="editais-step">
+          <div class="editais-icon">
+            <span aria-hidden="true" style="display:inline-block;font-style:normal;font-weight:bold">✧</span>
+          </div>
+          <div style="color:#f97316; font-weight:700; margin-bottom:0.75rem;">05</div>
+          <h4 style="font-size:0.95rem; font-weight:700; margin:0 0 0.75rem 0; color:#0f172a; line-height:1.3;">Início da jornada Incubadora Demo</h4>
+          <p style="font-size:0.78rem; color:#64748b; line-height:1.45; margin:0;">Integração ao ecossistema de inovação e início do acompanhamento especializado para desenvolvimento do negócio.</p>
+        </div>
+
+      </div>
+      <div class="editais-actions">
+        <a class="editais-button" href="editais.html" data-incubadora-demo-path="index.php/editais">
+          Ver editais →
+        </a>
+        <a class="anexo-card" href="#" data-local-info="1" target="_blank" rel="noopener" aria-label="Abrir PDF do Anexo I">
+          <span aria-hidden="true" style="display:inline-block;font-style:normal;font-weight:bold">▣</span>
+          <span>ANEXO I</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+      </div>
+    </main>
+</div>
+</div><!--
+  ============================================================
+  Bloco 2: Modulo de Rodape
+  ============================================================
+-->
+ <style>
+  html,
+  body {
+    min-height: 100% !important;
+  }
+
+  body.incubadora-demo-sticky-body {
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  @supports (min-height: 100dvh) {
+    body.incubadora-demo-sticky-body {
+      min-height: 100dvh !important;
+    }
+  }
+
+  body.incubadora-demo-sticky-body > footer.incubadora-demo-footer {
+    width: 100% !important;
+    margin-top: auto !important;
+    flex: 0 0 auto !important;
+  }
+
+  footer.incubadora-demo-footer,
+  footer.incubadora-demo-footer * {
+    box-sizing: border-box;
+  }
+
+  footer.incubadora-demo-footer {
+    margin: 0 !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    display: block !important;
+    font-family: Inter, Arial, Helvetica, sans-serif !important;
+  }
+
+  footer.incubadora-demo-footer [style*="grid-template-columns:minmax(0, 0.9fr) minmax(0, 1.35fr) minmax(0, 0.85fr)"] {
+    grid-template-columns: minmax(13rem, 0.75fr) minmax(37rem, 1.9fr) minmax(9rem, 0.65fr) !important;
+    column-gap: 1.2rem !important;
+  }
+
+  footer.incubadora-demo-footer [style*="flex-wrap:nowrap"] {
+    flex-wrap: nowrap !important;
+    white-space: nowrap !important;
+    gap: 0.22rem !important;
+  }
+
+  footer.incubadora-demo-footer [style*="flex-wrap:nowrap"] a {
+    flex: 0 0 auto;
+    padding-left: 0.42rem !important;
+    padding-right: 0.42rem !important;
+  }
+
+  @media (max-width: 1500px) {
+    footer.incubadora-demo-footer [style*="grid-template-columns:minmax(0, 0.9fr) minmax(0, 1.35fr) minmax(0, 0.85fr)"] {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+      gap: 1.4rem !important;
+      align-items: center !important;
+    }
+
+    footer.incubadora-demo-footer [style*="grid-template-columns:minmax(0, 0.9fr) minmax(0, 1.35fr) minmax(0, 0.85fr)"] > div:nth-child(2) {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+
+    footer.incubadora-demo-footer [style*="justify-content:flex-end"] {
+      justify-content: flex-end !important;
+    }
+
+    footer.incubadora-demo-footer [style*="flex-wrap:nowrap"] {
+      flex-wrap: wrap !important;
+      white-space: normal !important;
+      gap: 0.35rem !important;
+    }
+
+    footer.incubadora-demo-footer [style*="flex-wrap:nowrap"] a {
+      padding-left: 0.58rem !important;
+      padding-right: 0.58rem !important;
+    }
+  }
+
+  @media (max-width: 767px) {
+    footer.incubadora-demo-footer [style*="grid-template-columns:minmax(0, 0.9fr) minmax(0, 1.35fr) minmax(0, 0.85fr)"] {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      gap: 1.2rem !important;
+    }
+
+    footer.incubadora-demo-footer [style*="grid-template-columns:minmax(0, 0.9fr) minmax(0, 1.35fr) minmax(0, 0.85fr)"] > div:nth-child(2) {
+      grid-column: auto;
+      grid-row: auto;
+    }
+
+    footer.incubadora-demo-footer [style*="justify-content:flex-end"],
+    footer.incubadora-demo-footer [style*="text-align:center"] {
+      justify-content: center !important;
+      text-align: center !important;
+    }
+  }
+</style>
+
+<footer class="incubadora-demo-footer" aria-label="Rodapé Incubadora Demo" style="background: linear-gradient(to bottom, #ffffff 0%, #cbd5e1 100%); border-top: none !important; position: relative; overflow: hidden;">
+  <div style="max-width:88rem; width:94%; margin:0 auto; padding:1.7rem 0 0.95rem 0; position:relative; z-index:2;">
+    <div style="display:grid; grid-template-columns:minmax(0, 0.9fr) minmax(0, 1.35fr) minmax(0, 0.85fr); gap:1.8rem; align-items:center;">
+      <div style="display:flex; align-items:center; gap:1rem; min-width:0;">
+        <span class="portfolio-site-brand" aria-label="Incubadora Demo"><strong>INCUBADORA</strong><small>DEMONSTRAÇÃO</small></span>
+        <div style="min-width:0;">
+          <p style="font-size:0.76rem; font-weight:800; color:#12a19a; letter-spacing:0.14em; text-transform:uppercase; margin:0 0 0.25rem 0;">Incubadora de Empresas</p>
+          <p style="font-size:0.9rem; color:#334155; line-height:1.35; margin:0; max-width:18rem;">Pesquisa, tecnologia e empreendedorismo em uma interface demonstrativa.</p>
+        </div>
+      </div>
+
+      <div style="text-align:center; min-width:0;">
+        <h4 style="font-family:'Space Grotesk', sans-serif; font-size:0.92rem; font-weight:800; color:#0f172a; margin:0 0 0.7rem 0;">Navegação</h4>
+        <div style="display:flex; align-items:center; justify-content:center; gap:0.35rem; flex-wrap:nowrap; white-space:nowrap; width:100%;">
+          <a href="index.html" data-incubadora-demo-path="#" style="padding:0.40rem 0.58rem; border-radius:9999px; color:#0f172a; background:rgba(255,255,255,0.72); border:1px solid rgba(226,232,240,0.85); text-decoration:none; font-size:0.76rem; font-weight:700; transition:all 0.2s ease;" onmouseover="this.style.background='#f97316'; this.style.color='#ffffff'; this.style.borderColor='#f97316';" onmouseout="this.style.background='rgba(255,255,255,0.72)'; this.style.color='#0f172a'; this.style.borderColor='rgba(226,232,240,0.85)';">Home</a>
+          <a href="index.html#sobre" data-incubadora-demo-path="#sobre" style="padding:0.40rem 0.58rem; border-radius:9999px; color:#0f172a; background:rgba(255,255,255,0.72); border:1px solid rgba(226,232,240,0.85); text-decoration:none; font-size:0.76rem; font-weight:700; transition:all 0.2s ease;" onmouseover="this.style.background='#12a19a'; this.style.color='#ffffff'; this.style.borderColor='#12a19a';" onmouseout="this.style.background='rgba(255,255,255,0.72)'; this.style.color='#0f172a'; this.style.borderColor='rgba(226,232,240,0.85)';">Incubadora</a>
+          <a href="index.html#metodologia" data-incubadora-demo-path="#metodologia" style="padding:0.40rem 0.58rem; border-radius:9999px; color:#0f172a; background:rgba(255,255,255,0.72); border:1px solid rgba(226,232,240,0.85); text-decoration:none; font-size:0.76rem; font-weight:700; transition:all 0.2s ease;" onmouseover="this.style.background='#f97316'; this.style.color='#ffffff'; this.style.borderColor='#f97316';" onmouseout="this.style.background='rgba(255,255,255,0.72)'; this.style.color='#0f172a'; this.style.borderColor='rgba(226,232,240,0.85)';">Metodologia</a>
+          <a href="index.html#eventos" data-incubadora-demo-path="#eventos" style="padding:0.40rem 0.58rem; border-radius:9999px; color:#0f172a; background:rgba(255,255,255,0.72); border:1px solid rgba(226,232,240,0.85); text-decoration:none; font-size:0.76rem; font-weight:700; transition:all 0.2s ease;" onmouseover="this.style.background='#12a19a'; this.style.color='#ffffff'; this.style.borderColor='#12a19a';" onmouseout="this.style.background='rgba(255,255,255,0.72)'; this.style.color='#0f172a'; this.style.borderColor='rgba(226,232,240,0.85)';">Eventos</a>
+          <a href="empresas.html" data-incubadora-demo-path="#empresas" style="padding:0.40rem 0.58rem; border-radius:9999px; color:#0f172a; background:rgba(255,255,255,0.72); border:1px solid rgba(226,232,240,0.85); text-decoration:none; font-size:0.76rem; font-weight:700; transition:all 0.2s ease;" onmouseover="this.style.background='#f97316'; this.style.color='#ffffff'; this.style.borderColor='#f97316';" onmouseout="this.style.background='rgba(255,255,255,0.72)'; this.style.color='#0f172a'; this.style.borderColor='rgba(226,232,240,0.85)';">Empresas</a>
+          <a href="editais.html" data-incubadora-demo-path="#editais" style="padding:0.40rem 0.58rem; border-radius:9999px; color:#0f172a; background:rgba(255,255,255,0.72); border:1px solid rgba(226,232,240,0.85); text-decoration:none; font-size:0.76rem; font-weight:700; transition:all 0.2s ease;" onmouseover="this.style.background='#12a19a'; this.style.color='#ffffff'; this.style.borderColor='#12a19a';" onmouseout="this.style.background='rgba(255,255,255,0.72)'; this.style.color='#0f172a'; this.style.borderColor='rgba(226,232,240,0.85)';">Editais</a>
+          <a href="documentos.html" data-incubadora-demo-path="index.php/Documentos" style="padding:0.40rem 0.58rem; border-radius:9999px; color:#0f172a; background:rgba(255,255,255,0.72); border:1px solid rgba(226,232,240,0.85); text-decoration:none; font-size:0.76rem; font-weight:700; transition:all 0.2s ease;" onmouseover="this.style.background='#f97316'; this.style.color='#ffffff'; this.style.borderColor='#f97316';" onmouseout="this.style.background='rgba(255,255,255,0.72)'; this.style.color='#0f172a'; this.style.borderColor='rgba(226,232,240,0.85)';">Documentos</a>
+          <a href="noticias.html" data-incubadora-demo-path="index.php/Noticias" style="padding:0.40rem 0.58rem; border-radius:9999px; color:#0f172a; background:rgba(255,255,255,0.72); border:1px solid rgba(226,232,240,0.85); text-decoration:none; font-size:0.76rem; font-weight:700; transition:all 0.2s ease;" onmouseover="this.style.background='#f97316'; this.style.color='#ffffff'; this.style.borderColor='#f97316';" onmouseout="this.style.background='rgba(255,255,255,0.72)'; this.style.color='#0f172a'; this.style.borderColor='rgba(226,232,240,0.85)';">Notícias</a>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:center; justify-content:flex-end; gap:1.15rem; min-width:0;">
+        
+        <div style="display:grid; grid-template-columns:repeat(2, 2.1rem); gap:0.5rem;">
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+
+    <div style="height:1px; background:rgba(15,23,42,0.10); margin:1.15rem 0 0.75rem 0;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap;">
+      <p style="font-size:0.78rem; color:#334155; margin:0;">© 2026 Projeto demonstrativo de portfólio. Não é um site oficial.</p>
+      <a href="#" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;" style="font-size:0.78rem; color:#0f172a; text-decoration:none; font-weight:800; display:inline-flex; align-items:center; gap:0.35rem;" onmouseover="this.style.color='#f97316';" onmouseout="this.style.color='#0f172a';">
+        Voltar ao topo <span aria-hidden="true" style="display:inline-block;font-style:normal;font-weight:bold">✧</span>
+      </a>
+    </div>
+  </div>
+</footer>
+
+
+
+<!-- Links internos portáveis: usa automaticamente a raiz informada pelo Joomla. -->
+
+
+</div><a class="portfolio-preview-label" href="README.md" title="Esta prévia não inclui o Joomla, o backend nem o banco de dados">◈ Prévia estática de portfólio</a><script src="assets/portfolio.js"></script></body></html>

@@ -1,0 +1,251 @@
+/* Evita o menu dar uma mexida lateral quando a página ganha/perde scrollbar */
+html {
+    overflow-y: scroll !important;
+    scrollbar-gutter: stable !important;
+}
+
+/* 1. Reset Global do Body */
+body.site {
+    border-top: none !important;
+    background-color: #ffffff !important; /* Mudei para branco para combinar com o início do seu rodapé */
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 2. Zera container do Joomla, mas preserva o conteúdo interno */
+.body .container-fluid,
+.body .container {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background: transparent !important;
+}
+
+/* 3. Remove apenas o padding excessivo das colunas do template */
+#content, .row-fluid {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 4. Esconde o rodapé e o CABEÇALHO padrão do Joomla */
+footer.footer {
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+footer.footer hr,
+footer.footer p:not(.incubadora-demo-footer p) {
+    display: none !important;
+}
+
+/* AQUI ESTÁ A ÚNICA ADIÇÃO: Esconde o cabeçalho azul nativo do Joomla para não piscar na tela */
+header.header {
+    display: none !important;
+}
+
+/* 5. Garante que seu rodapé customizado ocupe 100% sem interferência */
+.incubadora-demo-footer {
+    width: 100% !important;
+    display: block !important;
+}
+
+/* Garante que o container interno do seu footer não seja espremido por regras do Joomla */
+.footer .custom {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+/* Força a remoção de qualquer respiro lateral do módulo personalizado */
+#wrapper .footer .custom, 
+.footer .container-fluid, 
+.footer .container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* Garante que o body não tenha margem de segurança */
+body {
+    overflow-x: hidden;
+}
+
+/* =========================================================
+   AJUSTE EXCLUSIVO DA PÁGINA DE NOTÍCIA COMPLETA (LEIA MAIS)
+   ========================================================= */
+
+/* Empurra o texto para baixo do menu e cria o fundo cinza claro */
+body.view-article:not(:has(#metodologia)):not(:has(#topo-noticias)):not(:has(#pagina-empresas)):not(:has(#pagina-editais)) #content {
+    padding-top: 9rem !important;
+    padding-bottom: 5rem !important;
+    background-color: #f8fafc !important;
+    min-height: 70vh !important;
+}
+
+/* Cria a "folha de papel" branca centralizada para a notícia */
+body.view-article:not(:has(#metodologia)):not(:has(#topo-noticias)):not(:has(#pagina-empresas)):not(:has(#pagina-editais)) .item-page {
+    max-width: 850px !important;
+    margin: 0 auto !important;
+    background: #ffffff !important;
+    padding: clamp(2rem, 5vw, 4rem) !important;
+    border-radius: 1.5rem !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.05) !important;
+    font-family: Inter, Arial, sans-serif !important;
+    color: #334155 !important;
+}
+
+/* Estiliza o título da notícia */
+body.view-article:not(:has(#metodologia)):not(:has(#topo-noticias)):not(:has(#pagina-empresas)):not(:has(#pagina-editais)) .item-page h2 {
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-size: clamp(2rem, 4vw, 2.8rem) !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    margin-top: 0 !important;
+    margin-bottom: 1.5rem !important;
+    line-height: 1.1 !important;
+}
+
+/* Deixa as imagens livres para você alinhar no editor (esquerda, centro, direita) */
+body.view-article:not(:has(#metodologia)):not(:has(#topo-noticias)):not(:has(#pagina-empresas)):not(:has(#pagina-editais)) .item-page img {
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 0.75rem !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
+    display: inline-block;
+}
+
+/* Quebra a trava nativa do Joomla que joga as imagens pra esquerda */
+body.view-article:not(:has(#metodologia)):not(:has(#topo-noticias)):not(:has(#pagina-empresas)):not(:has(#pagina-editais)) .item-page .item-image {
+    float: none !important;
+    text-align: center;
+    margin: 0 auto 2rem auto !important;
+    display: block;
+}
+
+/* Estiliza os textos e parágrafos */
+body.view-article:not(:has(#metodologia)):not(:has(#topo-noticias)):not(:has(#pagina-empresas)):not(:has(#pagina-editais)) .item-page p {
+    font-size: 1.05rem !important;
+    line-height: 1.8 !important;
+    margin-bottom: 1.25rem !important;
+}
+
+/* =========================================================
+   CORREÇÃO DA PISCADA (FOUC) NO CARREGAMENTO
+   Esconde a página por uma fração de segundo enquanto o 
+   navegador processa a regra :has()
+   ========================================================= */
+
+body.view-article .item-page {
+    animation: smooth-load 0.4s ease forwards;
+    opacity: 0; /* Começa invisível */
+}
+
+@keyframes smooth-load {
+    0% { opacity: 0; }
+    30% { opacity: 0; } /* Mantém escondido enquanto o Joomla pensa */
+    100% { opacity: 1; } /* Revela a página suavemente */
+}
+
+/* =========================================================
+   CORREÇÃO DA PISCADA NO MENU (FOUC E TEXTO DA LOGO)
+   Esconde o menu por uma fração de segundo para dar tempo
+   da logo e das fontes carregarem sem piscar texto na tela.
+   ========================================================= */
+
+nav[aria-label="Navegação principal Incubadora Demo"] {
+    animation: menu-smooth-load 0.2s ease forwards !important; /* Mudei para 0.2s para ser mais rápido */
+    opacity: 0; /* Começa invisível */
+}
+
+.incubadora-demo-header {
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    transform: none !important;
+}
+
+@keyframes menu-smooth-load {
+    0% { opacity: 0; }
+    40% { opacity: 0; } /* Segura a invisibilidade enquanto a imagem baixa */
+    100% { opacity: 1; } /* Revela o menu bonitão de uma vez só */
+}
+
+/* ===== DATA NO CANTO INFERIOR DIREITO ===== */
+/* Prepara o card para ser a "âncora" da data */
+.news-wrap .joomla-news-card {
+  position: relative !important; 
+}
+
+/* Pega a data e teletransporta pro canto */
+.news-wrap .joomla-news-card time.newsflash-date {
+  position: absolute !important;
+  bottom: 1.6rem !important; /* Altura exata para alinhar com o botão */
+  right: 1.25rem !important; /* Espaço da borda direita */
+  font-family: Inter, Arial, sans-serif !important;
+  font-size: 0.85rem !important;
+  color: #94a3b8 !important; /* Cinza elegante */
+  font-weight: 600 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  z-index: 10 !important;
+  line-height: 1 !important;
+}
+
+/* ===== ESCONDE A DATA APENAS NA PÁGINA DE EMPRESAS ===== */
+#pagina-empresas time.newsflash-date,
+#pagina-empresas .newsflash-date {
+    display: none !important;
+}
+/* =========================================================
+   ESCONDE METADADOS DO JOOMLA SOMENTE NAS PÁGINAS-LISTA
+   Notícias / Editais
+   Mantém "Escrito por" e "Publicado" no Leia Mais
+   ========================================================= */
+
+/* Página de Notícias e Editais: esconde metadados padrão do Joomla */
+body:has(#topo-noticias) .article-info,
+body:has(#topo-noticias) dl.article-info,
+body:has(#topo-noticias) .article-info-term,
+body:has(#topo-noticias) .createdby,
+body:has(#topo-noticias) .published,
+body:has(#topo-noticias) .create,
+body:has(#topo-noticias) .modified,
+
+body:has(#pagina-editais) .article-info,
+body:has(#pagina-editais) dl.article-info,
+body:has(#pagina-editais) .article-info-term,
+body:has(#pagina-editais) .createdby,
+body:has(#pagina-editais) .published,
+body:has(#pagina-editais) .create,
+body:has(#pagina-editais) .modified {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Remove o espacinho/bordinha que sobra acima do conteúdo customizado */
+body:has(#topo-noticias) .item-page,
+body:has(#pagina-editais) .item-page {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    border-top: 0 !important;
+}
+
+/* Garante que o conteúdo customizado comece colado no topo correto */
+body:has(#topo-noticias) #content,
+body:has(#pagina-editais) #content {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
